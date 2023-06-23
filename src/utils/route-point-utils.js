@@ -14,11 +14,9 @@ export const TIME_FORMAT = 'HH:mm';
 export const MSEC_IN_HOUR = MSEC_IN_SEC * SEC_IN_MIN * MIN_IN_HOUR;
 export const MSEC_IN_DAY = MSEC_IN_HOUR * HOUR_IN_DAY;
 
-export function normalizeDate(date, dateFormat) {
-  return date
-    ? dayjs(date).format(dateFormat)
-    : '';
-}
+export const normalizeDate = (date, dateFormat) => date
+  ? dayjs(date).format(dateFormat)
+  : '';
 
 export function getTimeDiff(timeFrom, timeTo) {
   const timeDiff = dayjs(timeTo).diff(timeFrom);
@@ -44,17 +42,11 @@ export const getDatesDiff = (dateFrom, dateTo, timeUnit) => timeUnit
   ? dayjs(dateTo).diff(dayjs(dateFrom), timeUnit)
   : dayjs(dateTo).diff(dayjs(dateFrom));
 
-export function isRoutePointFuture(routePoint){
-  return (dayjs().isBefore(routePoint.dateFrom));
-}
+export const isRoutePointFuture = (routePoint) => (dayjs().isBefore(routePoint.dateFrom));
 
-export function isRoutePointPast(routePoint){
-  return (dayjs().isAfter(routePoint.dateTo));
-}
+export const isRoutePointPast = (routePoint) => (dayjs().isAfter(routePoint.dateTo));
 
-export function isRoutePointPresent(routePoint){
-  return (dayjs().isAfter(routePoint.dateFrom) && dayjs().isBefore(routePoint.dateTo));
-}
+export const isRoutePointPresent = (routePoint) => (dayjs().isAfter(routePoint.dateFrom) && dayjs().isBefore(routePoint.dateTo));
 
 export const sortByDay = (routePointA, routePointB) => {
   const dateA = dayjs(routePointA.dateFrom);

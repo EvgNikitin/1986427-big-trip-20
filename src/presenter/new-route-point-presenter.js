@@ -34,9 +34,7 @@ export default class NewRoutePointPresenter {
       destinationsModel: this.#destinationsModel,
       offersModel: this.#offersModel,
       onFormSubmit: this.#handleFormSubmit,
-      onFormCancel: () => {
-        this.destroy();
-      },
+      onFormCancel: this.#handleCancelClick,
       isNewRoutePoint : true,
     });
 
@@ -44,6 +42,10 @@ export default class NewRoutePointPresenter {
 
     document.addEventListener('keydown', this.#escKeyDownHandler);
   }
+
+  #handleCancelClick = () => {
+    this.destroy();
+  };
 
   setSaving() {
     this.#routePointEditComponent.updateElement({
